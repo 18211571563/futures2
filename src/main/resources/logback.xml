@@ -1,0 +1,47 @@
+<configuration>
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder 默认配置为PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} -> %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="trace">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+
+	<!-- 资金管理日志 -->
+	<appender name="capital_management" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>C:\Users\Administrator\Desktop\log\capital_management.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} -> %msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="com.tcl.capital_management" level="info" additivity="false">
+		<appender-ref ref="capital_management" />
+	</logger>
+
+
+	<!-- 交易日志 -->
+	<appender name="market_timing" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>C:\Users\Administrator\Desktop\log\market_timing.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} -> %msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="com.tcl.market_timing" level="info" additivity="false">
+		<appender-ref ref="market_timing" />
+	</logger>
+
+
+</configuration>
